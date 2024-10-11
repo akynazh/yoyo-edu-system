@@ -1,0 +1,91 @@
+@time=1710655695744
+@cardId=123456
+
+### 添加类型 1 数据
+POST {{baseUrl}}/e/add/1
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "heartRate": 80.0,
+  "bloodOxygen": 97.1,
+  "microCirculation": 80.0
+}
+
+### 添加类型 2 数据
+POST {{baseUrl}}/e/add/2
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "above": 1500,
+  "below": 1500
+}
+
+### 添加类型 3 数据
+POST {{baseUrl}}/e/add/3
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "shrink": 90,
+  "diastolic": 150
+}
+
+### 添加类型 4 数据
+POST {{baseUrl}}/e/add/4
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "leftHead": 90,
+  "rightHead": 150,
+  "leftEar": 90,
+  "rightEar": 150
+}
+
+### 添加类型 5 数据
+POST {{baseUrl}}/e/add/5
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "imagePath": "/home/jzh/111.png",
+  "remark": "jzh"
+}
+
+### 添加类型 6 数据
+POST {{baseUrl}}/e/add/6
+Content-Type: application/json
+
+{
+  "cardId": {{cardId}},
+  "time": {{time}},
+  "result": 1
+}
+
+### 查询某段时间内的数据
+GET {{baseUrl}}/e/query/1?startTime=0&endTime={{time}}&cardId={{cardId}}
+
+### 查询最新数据
+GET {{baseUrl}}/e/queryLast/1?cardId={{cardId}}
+
+### 添加新用户
+POST {{baseUrl}}/u/add
+Content-Type: application/json
+{
+  "cardId": "t123456",
+  "name": "t123456",
+  "major": "cs",
+  "college": "college",
+  "department": "department",
+  "classId": "classId"
+}
+
+### 查询用户信息
+GET {{baseUrl}}/u/{{cardId}}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>YoYo 智慧教育数据可视化系统</title>
+	<link type="text/css" href="css/public.css" rel="stylesheet">
+	<link type="text/css" href="css/index.css" rel="stylesheet">
+	<script type="text/javascript">
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 768 * 100 + 'px';
+	</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.numscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+
+<body>
+<div class="bg">
+	<div class="title">YoYo 智慧教育数据可视化系统</div>
+	<div class="leftMain">
+		<div class="leftMain_top">
+			<div class="leftMain_topIn">
+				<ul>
+					<li>
+						<div class="liIn">
+							<h3>心率</h3>
+							<p class="shu" ><span class="shu1" id="heartRate"></span><i style="font-size: 13px" >次/分钟</i></p>
+							<div class="zi" style="font-size: 13px" id="heartRate_time"></div>
+							<span class="border_bg_leftTop"></span>
+							<span class="border_bg_rightTop"></span>
+							<span class="border_bg_leftBottom"></span>
+							<span class="border_bg_rightBottom"></span>
+						</div>
+					</li>
+					<li>
+						<div class="liIn">
+							<h3>血氧</h3>
+							<p class="shu"><span class="shu2" id="bloodOxygen"></span><i style="font-size: 13px" >%</i></p>
+							<div class="zi" style="font-size: 13px" id="bloodOxygen_time"></div>
+							<span class="border_bg_leftTop"></span>
+							<span class="border_bg_rightTop"></span>
+							<span class="border_bg_leftBottom"></span>
+							<span class="border_bg_rightBottom"></span>
+						</div>
+					</li>
+					<li>
+						<div class="liIn">
+							<h3>微循环</h3>
+							<p class="shu"><span class="shu3" id="microCirculation"></span><i style="font-size: 13px" >%</i></p>
+							<div class="zi" style="font-size: 13px" id="microCirculation_time"></div>
+							<span class="border_bg_leftTop"></span>
+							<span class="border_bg_rightTop"></span>
+							<span class="border_bg_leftBottom"></span>
+							<span class="border_bg_rightBottom"></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="leftMain_middle">
+			<div class="leftMain_middle_left">
+				<div class="leftMain_middle_leftIn">
+					<h3>手环肌电</h3>
+					<div class="biaoge" style="width:100%; height:25vh" id="chartmain_zhe1"></div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+			<div class="leftMain_middle_right">
+				<div class="leftMain_middle_rightIn">
+					<h3>手环血压</h3>
+					<div class="biaoge" style="width:100%; height:25vh" id="chartmain_zhe"></div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+
+				</div>
+			</div>
+		</div>
+		<div class="leftMain_middle">
+			<div class="leftMain_middle_left">
+				<div class="leftMain_middle_leftIn">
+					<h3>Muse 头戴</h3>
+					<div style="width:100%; height:25vh" id="muse">
+					</div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+			<div class="leftMain_middle_right">
+				<div class="leftMain_middle_rightIn">
+					<h3>3D 姿态检测</h3>
+					<div style="width:100%; height:25vh" id="g3d">
+					</div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="rightMain">
+		<div class="rightMain_top">
+			<div class="rightMain_topIn">
+				<h3>人脸信息</h3>
+				<div class="biaoge" style="width:100%; height:40vh" id="chartmain_bing">
+					<img id="my-img" src="" style="width: 100%; height: 90%">
+					<p style="color: #fff; font-size: 12px"><span style="font-weight: bold">备注信息：</span><span id="my-img-remark"></span></p>
+					<p style="color: #fff; font-size: 12px"><span style="font-weight: bold">记录时间：</span><span id="my-img-time"></span></p>
+				</div>
+				<span class="border_bg_leftTop"></span>
+				<span class="border_bg_rightTop"></span>
+				<span class="border_bg_leftBottom"></span>
+				<span class="border_bg_rightBottom"></span>
+			</div>
+		</div>
+		<div class="rightMain_bottom">
+			<div class="rightMain_bottomIn">
+<!--				<h3>3D 姿态检测</h3>-->
+<!--				<div style="width:100%; height:36vh" id="g3d">-->
+<!--				</div>-->
+<!--				<span class="border_bg_leftTop"></span>-->
+<!--				<span class="border_bg_rightTop"></span>-->
+<!--				<span class="border_bg_leftBottom"></span>-->
+<!--				<span class="border_bg_rightBottom"></span>-->
+					<h3>用户信息</h3>
+					<ul style="line-height: 35px">
+						<li><span style="font-weight: bold">学号：</span><span id="cardId"></span></li>
+						<li><span style="font-weight: bold">姓名：</span><span id="name"></span></li>
+						<li><span style="font-weight: bold">专业：</span><span id="major"></span></li>
+						<li><span style="font-weight: bold">院校：</span><span id="college"></span></li>
+						<li><span style="font-weight: bold">学院：</span><span id="department"></span></li>
+						<li><span style="font-weight: bold">班级：</span><span id="classId"></span></li>
+					</ul>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+			</div>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<script src="js/index.js"></script>
+<script type="text/javascript">
+	$(".shu1").numScroll();
+	$(".shu2").numScroll();
+	$(".shu3").numScroll();
+	$(".shu4").numScroll();
+	$(".shu5").numScroll();
+	$(".shu6").numScroll();
+</script>
+</body>
+
+</html>
